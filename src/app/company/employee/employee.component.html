@@ -1,0 +1,36 @@
+<div class="container-xl" style="padding-top: 20px;">
+    <div class="filter">
+        <form [formGroup]="employeeForm" class="form">
+            <div class="block">
+              <label for="name" class="label">Tên người tìm việc</label>
+              <input formControlName="name" type="text" class="input">
+              <span class="error" *ngIf="employeeForm.get('name').touched && 
+                          employeeForm.get('name').hasError('required')">Xin hãy nhập tên người tìm việc</span>
+              <button class="btn btn-success btn-find">Tìm kiếm</button>
+            </div>
+          </form>
+    </div>
+</div>
+<div class="job">
+    <div class="container-xl">
+        <div class="job__list">
+            <div class="row">
+                <div class="col-12">
+                    <div class="job__item" *ngFor="let item of employeeList, let i = index">
+                        <img src="{{imgUrl + item.avatar}}" class="thumbnails">
+                        <div class="job__info">
+                            <h5 (click)="navigateToEmployee(item.job_id)" class="job__title">{{item.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <div class="col-md-12">
+              <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)"
+                [totalItems]="totalRow" [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;"
+                nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+            </div>
+          </div>
+    </div>
+</div>

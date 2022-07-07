@@ -1,0 +1,28 @@
+#credit {
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: var(--bs-white);
+}
+
+.credit__content {
+    margin-top: 1rem;
+    padding-bottom: .5rem;
+}  
+
+.credit__content p{
+    display: flex;
+    justify-content: center;
+    color: #999;
+    font-size: .9rem;
+}
+
+.logo {
+    height: 130px;
+}
+
+.follow__content {
+    margin-left: 2rem;
+}

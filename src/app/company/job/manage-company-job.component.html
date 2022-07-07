@@ -1,0 +1,58 @@
+<div class="container-xl">
+    <h1 class="title">Danh sách việc làm</h1>
+    <form action="changeCountryInfoForm" [formGroup]="jobForm" class="form">
+      <div class="block">
+        <label for="name" class="label">Tên việc làm</label>
+        <input formControlName="name" type="text" class="input">
+        <span class="error" *ngIf="jobForm.get('name').touched && 
+                jobForm.get('name').hasError('required')">Xin hãy nhập tên việc làm</span>
+        <button class="btn btn-find">Tìm kiếm</button>
+        <a type="button" class="btn btn-create" routerLink="/main/job/post-job">
+          <i class="fa-solid fa-plus"></i>
+          Tạo mới</a>
+      </div>
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Tên việc làm</th>
+          <th scope="col">Trạng thái</th>
+          <th scope="col">Chỉnh sửa gần nhất</th>
+          <th scope="col">Tác vụ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of jobList">
+          <td>{{item.name}}</td>
+          <td *ngIf="item.status==='Active'">Đã đăng tuyển</td>
+          <td *ngIf="item.status==='Pending'">Chờ duyệt</td>
+          <td *ngIf="item.status==='Inactive'">Chưa đăng tuyển</td>
+          <td *ngIf="item.modified_at===null">{{item.created_at| date: 'dd/MM/yyyy'}}</td>
+          <td *ngIf="item.modified_at!==null">{{item.modified_at| date: 'dd/MM/yyyy'}}</td>
+          <td>
+            <button (click)="sendjob(item.job_id)" class="send-link" *ngIf="item.status==='Inactive'">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <button (click)="unpublicJob(item.job_id)" class="unpublic-link" *ngIf="item.status==='Pending'||item.status==='Active'">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <button (click)="navigateToEdit(item.job_id)" class="edit-link">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button (click)="navigateToViewRegisted(item.job_id)" class="view-link">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button (click)="deleteItem(item.job_id)" class="delete-link">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <div class="col-md-12">
+        <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)" [totalItems]="totalRow"
+        [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+    </div>
+  </div>

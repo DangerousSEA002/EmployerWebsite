@@ -1,0 +1,62 @@
+<div class="register-page" role="register-page">
+    <div class="container-fluid">
+        <div class="row g-0">
+            <div class="col-lg-6 col">
+                <div class="register__banner">
+                    <div class="register__img" style="background-image: url('../../assets/img/register/wallpaper.png')">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 col">
+                <div class="register__column">
+                    <div class="register-form" role="register-form">
+                        <h1 class="register__title">Chào mừng đến với JobOfferer</h1>
+                        <p class="register__description">Tạo tại khoản để bắt đầu tìm kiếm những nhân sự phù hợp cho công ty của bạn</p>
+                        <form name="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                            <div class="input-block">
+                                <label for="user" class="register__user-title">Tên tài khoản: </label>
+                                <i class="fa-solid fa-user icon"></i>
+                                <input formControlName="UserName" type="text" class="input" placeholder="Nhập tên tài khoản"/>
+                                <span class="error" *ngIf="registerForm.get('UserName').touched && 
+                                    registerForm.get('UserName').hasError('required')">Xin hãy nhập tên tài khoản</span>
+                            </div>
+                            <div class="input-block">
+                                <label for="user" class="register__user-email">Địa chỉ Email: </label>
+                                <i class="fa-solid fa-envelope icon"></i>
+                                <input formControlName="Email" class="input" placeholder="Nhập email"/>
+                                <span class="error" *ngIf="registerForm.get('Email').touched && 
+                                    registerForm.get('Email').hasError('required')">Xin hãy nhập địa chỉ Email</span>
+                                <span class="error" *ngIf="registerForm.get('Email').hasError('Email')">Địa chỉ email không chính xác</span>
+                            </div>
+                            <div class="input-block">
+                                <label for="password" class="register__password-title">Mật khẩu: </label>
+                                <i class="fa-solid fa-key icon"></i>
+                                <input formControlName="Password" type="password" class="input" placeholder="Nhập mật khẩu"/>
+                                <p class="instruction">Mật khẩu từ 6-32 ký tự, có ít nhất 1 kí tự chữ, 1 kí tự số</p>
+                                <span class="error password-error" *ngIf="registerForm.get('Password').touched &&
+                                     registerForm.get('Password').hasError('required')">Xin hãy nhập mật khẩu</span>
+                                <span class="error password-error" *ngIf="registerForm.get('Password').hasError('minlength') ||
+                                     registerForm.get('Password').hasError('maxlength')">Mật khẩu có độ dài không phù hợp</span>
+
+                            </div>
+                            <div class="input-block">
+                                <label for="re-password" class="register__re-password-title">Nhập lại mật khẩu: </label>
+                                <i class="fa-brands fa-keybase icon"></i>
+                                <input formControlName = "re_password" type="password" class="input" placeholder="Nhập lại mật khẩu"/>
+                                <span class="error" *ngIf="registerForm.get('re_password').touched && registerForm.get('re_password').invalid">Xin hãy nhập lại mật khẩu</span>
+                            </div>
+                            <p class="tos-and-security">Bằng cách ấn vào nút đăng ký, bạn đã đồng ý với <a class="link" routerLink="/tos">Điều khoản dịch vụ</a>
+                                và <a class="link" routerLink="/security">Chính sách bảo mật</a> của chúng tôi
+                            </p>
+                            <button type="submit" name="submit" class="btn register__btn">Đăng ký</button>
+                        </form>
+                        <p class="register__text">Bạn đã là thành viên ? <a style="cursor: pointer;"routerLink="/login" class="link">Đăng nhập</a></p>
+                        <a  class="employer__register btn"href="http://localhost:4200">
+                            Bạn là người tìm việc ?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+
+<div class="account__page">
+    <div class="container-xl">
+        <h1 class="account__title">Cập nhật thông tin công ty</h1>
+        <div class="account__information">
+            <h3 class="account__info-title">Thông tin</h3> 
+            <form (submit)="saveData()" [formGroup]="infoForm" class="form">
+                <input type="hidden" formControlName="Id">
+                <div class="block">
+                    <label for="name" class="label"><p>Tên công ty</p></label>
+                    <input formControlName="name" type="text" class="input">
+                    <span class="error" *ngIf="infoForm.get('name').touched && 
+                    infoForm.get('name').hasError('required')">Xin hãy nhập tên công ty</span>
+                </div>
+                <div class="block">
+                    <label for="phone_number" class="label"><p>Số điện thoại</p></label>
+                    <input formControlName="phone_number" type="text" class="input">
+                    <span class="error" *ngIf="infoForm.get('phone_number').touched && 
+                    infoForm.get('phone_number').hasError('required')">Xin hãy nhập số điện thoại của bạn</span>
+                    <span class="error" *ngIf="infoForm.get('phone_number').touched && 
+                    infoForm.get('phone_number').hasError('pattern')">Số điện thoại không hợp lệ</span>
+                </div>
+                <div class="block">
+                    <label for="fax" class="label"><p>Số fax</p></label>
+                    <input formControlName="fax" type="text" class="input">
+                    <span class="error" *ngIf="infoForm.get('fax').touched && 
+                    infoForm.get('fax').hasError('pattern')">Số fax không hợp lệ</span>
+                </div>
+                <div class="block">
+                    <label for="avatar" class="label">
+                        <p>Logo</p>
+                    </label>
+                    <input type="file" class="input" #avatar name="avatar">
+                    <input type="hidden" formControlName="avatar">
+                </div>
+                <div class="block">
+                    <label for="banner" class="label">
+                        <p>Banner</p>
+                    </label>
+                    <input type="file" class="input" #banner name="banner">
+                    <input type="hidden" formControlName="banner">
+                </div>
+                <div class="block">
+                    <label for="description" class="label"><p>Giới thiệu</p></label>
+                    <textarea formControlName="description" type="text" class="input"></textarea>
+                </div>
+                <div class="block">
+                    <label for="address" class="label"><p>Địa chỉ</p></label>
+                    <input formControlName="address" type="text" class="input">
+                </div>
+                <div class="block">
+                    <label class="label"><p>Tỉnh/Thành phố</p></label>
+                    <select class="input" formControlName="province_id">
+                        <option [value]="null" [disabled]="true" >--- Chọn tỉnh/thành phố ---</option>
+                        <option [value]="item.province_id" *ngFor="let item of provinceList">{{item.name}}</option>
+                    </select>
+                </div>
+                <button class="btn btn-save" type="submit">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container-xl">
+    <h1 class="title">Danh sách người đã đăng ký việc làm</h1>
+    <form [formGroup]="registedForm" class="form">
+      <div class="block">
+        <label for="name" class="label">Tên người</label>
+        <input formControlName="name" type="text" class="input">
+        <button class="btn btn-find">Tìm kiếm</button>
+        <a routerLink="/main/job" class="btn btn-danger">Quay lại</a>
+      </div>
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Hồ sơ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of registedUsers; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.phone_number}}</td>
+          <td><a href="{{server + item.resume}}">Hồ sơ</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <div class="col-md-12">
+        <pagination [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)" [totalItems]="totalRow"
+        [(ngModel)]="pageIndex" class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+      </div>
+    </div>
+  </div>

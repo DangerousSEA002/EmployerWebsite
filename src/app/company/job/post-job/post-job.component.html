@@ -1,0 +1,85 @@
+
+<div class="account__page">
+    <div class="container-xl">
+        <div class="account__information">
+            <h3 class="account__info-title">Thông tin</h3> 
+            <form [formGroup]="infoForm" class="form" (ngSubmit)="saveChanges(infoForm.valid)">
+                <div class="block">
+                    <label for="name" class="label">Tên công việc</label>
+                    <input formControlName="name" type="text" class="input">
+                    <span class="error" *ngIf="infoForm.get('name').touched && 
+                    infoForm.get('name').hasError('required')">Xin hãy nhập tên công việc</span>
+                </div>
+                <div class="block">
+                    <label class="label">Phân loại công việc</label>
+                    <ng-select formControlName="job_categories" [multiple]="true" [closeOnSelect]="false" placeholder="--- Chọn phân loại ---">
+                        <ng-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</ng-option>
+                    </ng-select>
+                </div>
+                <div class="block">
+                    <label for="description" class="label"><p>Mô tả công việc</p></label>
+                    <textarea formControlName="description" type="text" class="input"></textarea>
+                </div>
+                <div class="block">
+                    <label class="label">Trình độ công việc yêu cầu</label>
+                    <select class="input" formControlName="level_id">
+                        <option [value]="null" [disabled]="true" >--- Chọn trình độ làm việc ---</option>
+                        <option [value]="item.level_id" *ngFor="let item of levelList">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="block">
+                    <label class="label"><p>Yêu cầu công việc</p></label>
+                    <textarea formControlName="job_requirement" type="text" class="input"></textarea>
+                </div>
+                <div class="block">
+                    <label class="label">Phương thức làm việc</label>
+                    <select class="input" formControlName="working_type_id">
+                        <option [value]="null" [disabled]="true" >--- Chọn phương thức làm việc ---</option>
+                        <option [value]="item.working_type_id" *ngFor="let item of workingTypeList">{{item.name}}</option>
+                    </select>
+                </div>
+                
+                <div class="block">
+                    <label class="label">Mức lương</label>
+                    <select class="input" formControlName="salary_range_id">
+                        <option [value]="null" [disabled]="true" >--- Chọn mức lương---</option>
+                        <option [value]="item.salary_range_id" *ngFor="let item of salaryRangeList">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="block">
+                    <label class="label">Phúc lợi</label>
+                    <div formArrayName="welfares">
+                        <div *ngFor="let control of infoForm.get('welfares')['controls']; index as i" class="sub-block">
+                            <div [formGroupName]="i">
+                                <select class="input-sub" formControlName="welfare_type">
+                                    <option [value]="null" [disabled]="true" >--- Loại phúc lợi ---</option>
+                                    <option [ngValue]="item" *ngFor="let item of welfareTypeList">{{item.name}}</option>
+                                </select>
+                                <input formControlName="description" type="text" class="input welfare">
+                                <button class="btn btn-add" (click)="addWelfares()" type="button">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <button class="btn btn-add" (click)="removeWelfares(i)"  type="button">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <label class="label">Tỉnh/Thành phố</label>
+                    <select class="input" formControlName="province_id">
+                        <option [value]="null" [disabled]="true" >--- Chọn tỉnh/thành phố ---</option>
+                        <option [value]="item.province_id" *ngFor="let item of provinceList">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="block">
+                    <label for="address" class="label">Địa chỉ</label>
+                    <input formControlName="address" type="text" class="input">
+                </div>
+                <button class="btn btn-save" type="submit">Lưu thay đổi</button>
+                <a routerLink="/main/job" class="btn btn-danger btn-cancel" type="submit">Quay lại trang chủ</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+.account__page {
+    background-color: var(--bs-gray-200);
+    padding:50px 0;
+}
+.must {
+    display: inline-block;
+    color: var(--bs-red);
+}
+
+.radio-buttons {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.btn-save {
+    margin: 31px 50px 30px 300px;
+    background-color:var(--bs-indigo);
+    color: var(--bs-white);
+}
+
+.btn-add {
+    height: 32px;
+}
+
+.btn-standard {
+    background-color:var(--bs-indigo);
+    color: var(--bs-dark);
+    text-align: left;
+}
+
+.account__title {
+    color: var(--bs-indigo);
+}
+
+.account__information {
+    border: 1px solid var(--bs-indigo);
+    background-color: var(--bs-white);
+    margin-top:20px;
+}
+
+.account__info-title{
+    color: var(--bs-white);
+    background-color: var(--bs-indigo);
+    padding: 4px 16px;
+}
+
+.block {
+    margin-left: 100px;
+    display: flex;
+    position: relative;
+    padding-bottom: 40px;
+    align-items: center;
+}
+
+.label {
+    width: 200px;
+    text-align: right;
+    padding-right:10px;
+}
+
+.input {
+    width: 500px;
+    vertical-align: top;
+    min-height: 32px;
+
+}
+
+.input-sub {
+    min-height: 32px;
+    width: 180px;
+}
+
+textarea {
+    height: 200px;
+}
+.error {
+    color: var(--bs-red);
+    margin-left:20px;
+}
+
+.form {
+    margin-top: 20px;;
+}
+
+.instruction {
+    margin-left: 200px;
+    font-size:.9rem;
+}
+
+textarea {
+    margin-bottom: 0.75rem;
+}
+
+.ng-select {
+    width: 250px;
+}
+
+.welfare {
+    margin-left: 10px;
+}
+
+.sub-block {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,45 @@
+<div class="login-page" role="login-page">
+    <div class="container-fluid">
+        <div class="row g-0">
+            <div class="col-lg-6 col">
+                <div class="login__banner">
+                    <div class="login__img" style="background-image: url('../../assets/img/login/wallpaper.jpg')">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 col">
+                <div class="login__column">
+                    <div class="login-form" role="login-form">
+                        <h1 class="login__title">Chào mừng đến với JobOfferer</h1>
+                        <p class="login__description">Đăng nhập để tìm kiếm những nhân sự phù hợp cho công ty của bạn</p>
+                        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+                            <div class="block">
+                                <label for="user" class="title">Tên tài khoản: </label>
+                                <i class="fa-solid fa-user icon"></i>
+                                <input formControlName="username" type="text" class="input"
+                                    placeholder="Nhập tên tài khoản" />
+                                <span class="error" *ngIf="loginForm.get('username').touched && 
+                                    loginForm.get('username').hasError('required')">Xin hãy nhập tên tài khoản</span>
+                            </div>
+                            <div class="block">
+                                <label for="password" class="title">Mật khẩu: </label>
+                                <i class="fa-solid fa-key icon"></i>
+                                <input formControlName="password" type="password" class="input"
+                                    placeholder="Nhập mật khẩu" />
+                                <span class="error" *ngIf="loginForm.get('password').touched && 
+                                    loginForm.get('password').hasError('required')">Xin hãy nhập mật khẩu</span>
+                            </div>
+                            <button type="submit" name="submit" class="btn login__btn">Đăng nhập</button>
+                        </form>
+                        <p class="register__text">Chưa có tài khoản ? <a routerLink="/register" class="link">Đăng
+                                ký ngay</a></p>
+                        <a routerLink="/user/forgot-password" class="link">Quên mật khẩu ?</a>
+                        <a  class="employee__register btn"href="http://localhost:4200/user/login">
+                            Bạn là người tìm việc ?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
